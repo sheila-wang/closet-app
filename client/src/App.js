@@ -14,7 +14,17 @@ function App() {
       },
       ( error ) => { console.log( error ) }
     )
-  }, [ ] ) 
+  }, [] ) 
+
+  const arrayOfObjects = [];
+  for (let i = 0; i < items.length; i++) {
+    arrayOfObjects.push(
+      <Card
+        key = { i }
+        data = { items[i] }
+      />
+    )
+  }
 
   return (
     <div class = "container1">
@@ -23,16 +33,16 @@ function App() {
       </div>
 
       <div class = "container3">
-        <div>hello1</div>
-        <div>hello2</div>
-        <div>hello3</div>
-        <div>hello4</div>
-        <div>hello5</div>
-        <div>hello6</div>
-
+        { arrayOfObjects }
       </div>
     </div>
   );
+}
+
+function Card(props) {
+  return (
+    <div>hello { props.data.id }</div>
+  )
 }
 
 export default App;
