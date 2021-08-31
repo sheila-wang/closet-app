@@ -1,6 +1,21 @@
 import './App.css';
+import React, { useState, useEffect } from 'react';
 
 function App() {
+  const [items, setItems] = useState( [] );
+
+  useEffect( () => {
+    fetch( 'http://localhost:3000') 
+    .then( result => result.json() )
+    .then( 
+      ( result ) => { 
+        console.log( 'my items', items );
+        setItems( result ); 
+      },
+      ( error ) => { console.log( error ) }
+    )
+  }, [ ] ) 
+
   return (
     <div class = "container1">
       <div class = "container2">
@@ -14,9 +29,7 @@ function App() {
         <div>hello4</div>
         <div>hello5</div>
         <div>hello6</div>
-        <div>hello7</div>
-        <div>hello8</div>
-        <div>hello9</div>
+
       </div>
     </div>
   );
