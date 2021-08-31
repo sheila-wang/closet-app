@@ -6,17 +6,18 @@ function App() {
 
   useEffect( () => {
     fetch( 'http://localhost:3000') 
-    .then( result => result.json() )
+    .then( response => response.json() )
     .then( 
-      ( result ) => { 
+      ( response ) => { 
         console.log( 'my items', items );
-        setItems( result ); 
+        setItems( response ); 
       },
       ( error ) => { console.log( error ) }
     )
   }, [] ) 
 
   const arrayOfObjects = [];
+
   for (let i = 0; i < items.length; i++) {
     arrayOfObjects.push(
       <Card
@@ -27,12 +28,12 @@ function App() {
   }
 
   return (
-    <div class = "container1">
-      <div class = "container2">
-        <div class = "search">search</div>
+    <div id = "container1">
+      <div id = "container2">
+        <div id = "search">search</div>
       </div>
 
-      <div class = "container3">
+      <div id = "container3">
         { arrayOfObjects }
       </div>
     </div>
@@ -41,7 +42,11 @@ function App() {
 
 function Card(props) {
   return (
-    <div>hello { props.data.id }</div>
+    <div className = "card">
+      <div>id: { props.data.id }</div>
+      <div>color: { props.data.color }</div>
+      <div>length: { props.data.length }</div>
+    </div>
   )
 }
 

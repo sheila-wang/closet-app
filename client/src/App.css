@@ -1,4 +1,4 @@
-.container2 {
+#container2 {
   background-color: yellow;
   display: grid;
   grid-gap: 10px;
@@ -6,13 +6,13 @@
   grid-template-areas: 'search';
 }
 
-.container3 {
+#container3 {
   background-color: grey;
   display: grid;
   gap: 10px;
   grid-template-columns: auto auto auto;
 }
 
-.container3 > div {
+#container3 > .card {
   background-color: green;
 }
