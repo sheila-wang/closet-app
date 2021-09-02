@@ -22,7 +22,7 @@ function App() {
     arrayOfObjects.push(
       <Card
         key = { i }
-        data = { items[i] }
+        item = { items[i] }
       />
     )
   }
@@ -41,11 +41,14 @@ function App() {
 }
 
 function Card(props) {
+  let url = "http://localhost:3000/images/" + props.item.id + ".jpg"
+
   return (
     <div className = "card">
-      <div>id: { props.data.id }</div>
-      <div>color: { props.data.color }</div>
-      <div>length: { props.data.length }</div>
+      <img src = { url } alt = "dress"/>
+      <div>id: { props.item.id }</div>
+      <div>color: { props.item.color }</div>
+      <div>length: { props.item.length }</div>
     </div>
   )
 }
