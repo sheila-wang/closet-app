@@ -19,7 +19,13 @@ router.get( '/',
           myQuery = `
             SELECT *
             FROM dresses
-            WHERE color = '${request.query.color}'
+            WHERE color = '${ request.query.color }'
+          ;`;
+        } else if (request.query.length) {
+          myQuery = `
+            SELECT *
+            FROM dresses
+            WHERE length = '${ request.query.length }'
           ;`;
         } else {
           myQuery = `
@@ -27,7 +33,7 @@ router.get( '/',
             FROM dresses
           ;`;
         }
-        
+
         // request.query is the color
         console.log( 'my request.query', request.query );
         const result = await pool.query( myQuery );
