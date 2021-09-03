@@ -13,7 +13,24 @@ router.get( '/',
     // async await style
     async function( request, response, next ) {
       try {
-        const result = await pool.query( 'SELECT * FROM dresses;' );
+        let myQuery = '';
+
+        if (request.query.color) {
+          myQuery = `
+            SELECT *
+            FROM dresses
+            WHERE color = '${request.query.color}'
+          ;`;
+        } else {
+          myQuery = `
+            SELECT *
+            FROM dresses
+          ;`;
+        }
+        
+        // request.query is the color
+        console.log( 'my request.query', request.query );
+        const result = await pool.query( myQuery );
         response.send( result.rows );
 
       } catch ( error ) {
@@ -21,7 +38,7 @@ router.get( '/',
           next( error );
       }
 
-      next();
+      // next();
     }
 );
 
