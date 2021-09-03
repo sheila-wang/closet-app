@@ -31,6 +31,26 @@ function App() {
     <div id = "container1">
       <div id = "container2">
         <div id = "search">search</div>
+
+        {/* color */}
+        <div>color</div>
+        <select style={{width: '100px'}}>
+          <option value="white">white</option>
+          <option value="black">black</option>
+          <option value="blue">blue</option>
+          <option value="green">green</option>
+          <option value="red">red</option>
+          <option value="pink">pink</option>
+        </select>
+
+        {/* length */}
+        <div>length</div>
+        <select style={{width: '100px'}}>
+          <option value="short">short</option>
+          <option value="mid">mid</option>
+          <option value="long">long</option>
+        </select>
+
       </div>
 
       <div id = "container3">
