@@ -2,10 +2,32 @@ var express = require('express');
 const { compileClientWithDependenciesTracked } = require('jade');
 var router = express.Router();
 
+const { Pool, Client } = require('pg');
+const pool = new Pool( {
+  connectionString: 'postgres://gxzeyfzn:9DGCs3g_FQ6rkD4_BcMCJCMqVk13B3K1@chunee.db.elephantsql.com/gxzeyfzn'
+} );
+
+
 /* GET home page. */
 router.get( '/', 
+    // async await style
+    async function( request, response, next ) {
+      try {
+        const result = await pool.query( 'SELECT * FROM dresses;' );
+        response.send( result.rows );
+
+      } catch ( error ) {
+          console.log( 'my error ', error );
+          next( error );
+      }
+
+      next();
+    }
+);
+
+/*
+router.get( '/', 
   function( request, response, next ) {
-    // response.render('index', { title: 'Express' });
     const myArray = [
       {
         id: 1,
@@ -43,8 +65,10 @@ router.get( '/',
         length: 'long'
       }
     ]
-    response.send( myArray );
-  }
+  };
+  
+  response.send( myArray );
 );
+*/
 
 module.exports = router;
