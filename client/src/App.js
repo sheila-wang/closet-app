@@ -5,7 +5,7 @@ function App() {
   const [items, setItems] = useState( [] );
 
   useEffect( () => {
-    fetch( 'http://localhost:3000') 
+    fetch( 'http://localhost:3000/?color=white') 
     .then( response => response.json() )
     .then( 
       ( response ) => { 
