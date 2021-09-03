@@ -7,6 +7,12 @@ const pool = new Pool( {
   connectionString: 'postgres://gxzeyfzn:9DGCs3g_FQ6rkD4_BcMCJCMqVk13B3K1@chunee.db.elephantsql.com/gxzeyfzn'
 } );
 
+/*
+testing:
+http://localhost:3000 SELECT *
+http://localhost:3000/?color=white SELECT by color
+http://localhost:3000/?length=short SELECT by length
+*/
 
 /* GET home page. */
 router.get( '/', 
