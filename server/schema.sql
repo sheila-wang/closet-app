@@ -11,13 +11,13 @@ CREATE TABLE dresses (
 INSERT INTO dresses
 VALUES
   (1, 'white', 'short'),
-  (2, 'black', 'mid'),
-  (3, 'blue', 'long'),
-  (4, 'white', 'short'),
+  (2, 'white', 'short'),
+  (3, 'white', 'long'),
+  (4, 'black', 'short'),
   (5, 'red', 'mid'),
   (6, 'pink', 'long');
-  
--- query
+
+-- query in elephantsql
 
 SELECT *
 FROM dresses

@@ -5,7 +5,7 @@ function App() {
   const [items, setItems] = useState( [] );
 
   useEffect( () => {
-    fetch( 'http://localhost:3000/?color=white') 
+    fetch( 'http://localhost:3000/?color=white&length=short') 
     .then( response => response.json() )
     .then( 
       ( response ) => { 
@@ -29,12 +29,13 @@ function App() {
 
   return (
     <div id = "container1">
+
       <div id = "container2">
         <div id = "search">search</div>
 
         {/* color */}
         <div>color</div>
-        <select style={{width: '100px'}}>
+        <select style = { { width: '100px' } }>
           <option value="white">white</option>
           <option value="black">black</option>
           <option value="blue">blue</option>
@@ -45,7 +46,7 @@ function App() {
 
         {/* length */}
         <div>length</div>
-        <select style={{width: '100px'}}>
+        <select style = { { width: '100px' } }>
           <option value="short">short</option>
           <option value="mid">mid</option>
           <option value="long">long</option>
@@ -56,6 +57,7 @@ function App() {
       <div id = "container3">
         { arrayOfObjects }
       </div>
+
     </div>
   );
 }

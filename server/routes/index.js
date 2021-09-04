@@ -1,3 +1,4 @@
+const { request } = require('express');
 var express = require('express');
 const { compileClientWithDependenciesTracked } = require('jade');
 var router = express.Router();
@@ -13,8 +14,7 @@ testing:
 http://localhost:3000 SELECT *
 http://localhost:3000/?color=white SELECT by color
 http://localhost:3000/?length=short SELECT by length
-http://localhost:3000/?color=white+length=short SELECT by color and length
-
+http://localhost:3000/?color=white&length=short SELECT by color and length
 */
 
 /* GET home page. */
@@ -24,18 +24,31 @@ router.get( '/',
       try {
         let myQuery = '';
 
-        if (request.query.color) {
+        // query by color and length
+        if (request.query.color && request.query.length) {
+          myQuery = `
+            SELECT *
+            FROM dresses
+            WHERE color = '${ request.query.color }'
+            AND length = '${ request.query.length }'
+          ;`;
+        
+        // query by color
+        } else if (request.query.color) {
           myQuery = `
             SELECT *
             FROM dresses
             WHERE color = '${ request.query.color }'
           ;`;
+
+        // query by length
         } else if (request.query.length) {
           myQuery = `
             SELECT *
             FROM dresses
             WHERE length = '${ request.query.length }'
           ;`;
+        // query by no filter
         } else {
           myQuery = `
             SELECT *
@@ -43,7 +56,23 @@ router.get( '/',
           ;`;
         }
 
-        // request.query is the color
+        /*
+        console.log( 'my request', request );
+
+        request = <ref *2> IncmoingMessage{
+          headers: {
+            host: 'localhost:3000',
+            ...
+          }
+          method: 'GET',
+          params: {},
+          query: { color: 'white', length: 'short' },
+          body: {},
+          cookies: [Object: null prototype] {},
+          ...
+        }
+        */
+
         console.log( 'my request.query', request.query );
         const result = await pool.query( myQuery );
         response.send( result.rows );
@@ -69,19 +98,19 @@ router.get( '/',
 
       {
         id: 2,
-        color: 'black', 
-        length: 'mid'
+        color: 'white', 
+        length: 'short'
       }, 
 
       {
         id: 3,
-        color: 'blue',
+        color: 'white',
         length: 'long'
       },
 
       {
         id: 4,
-        color: 'green',
+        color: 'black',
         length: 'short'
       }, 
 
