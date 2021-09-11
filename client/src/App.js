@@ -5,7 +5,8 @@ function App() {
   const [items, setItems] = useState( [] );
 
   useEffect( () => {
-    fetch( 'http://localhost:3000/?color=white&length=short') 
+    // fetch( 'http://localhost:3000/?color=pink&length=short') 
+    fetch( 'http://localhost:3000' ) 
     .then( response => response.json() )
     .then( 
       ( response ) => { 
@@ -37,18 +38,18 @@ function App() {
         <div>color</div>
         <select style = { { width: '100px' } }>
           <option value="white">white</option>
-          <option value="black">black</option>
-          <option value="blue">blue</option>
-          <option value="green">green</option>
-          <option value="red">red</option>
+          <option value="beige">beige</option>
+          <option value="brown">brown</option>
           <option value="pink">pink</option>
+          <option value="blue">blue</option>
+          <option value="gray">gray</option>
+          <option value="black">black</option>
         </select>
 
         {/* length */}
         <div>length</div>
         <select style = { { width: '100px' } }>
           <option value="short">short</option>
-          <option value="mid">mid</option>
           <option value="long">long</option>
         </select>
 

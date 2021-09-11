@@ -12,9 +12,9 @@ const pool = new Pool( {
 /*
 testing:
 http://localhost:3000 SELECT *
-http://localhost:3000/?color=white SELECT by color
+http://localhost:3000/?color=pink SELECT by color
 http://localhost:3000/?length=short SELECT by length
-http://localhost:3000/?color=white&length=short SELECT by color and length
+http://localhost:3000/?color=pink&length=short SELECT by color and length
 */
 
 /* GET home page. */
@@ -23,31 +23,39 @@ router.get( '/',
     async function( request, response, next ) {
       try {
         let myQuery = '';
+        let values = [];
 
         // query by color and length
         if (request.query.color && request.query.length) {
+          values = [ request.query.color, request.query.length ];
+
           myQuery = `
             SELECT *
             FROM dresses
-            WHERE color = '${ request.query.color }'
-            AND length = '${ request.query.length }'
+            WHERE color = $1
+            AND length = $2
           ;`;
-        
-        // query by color
+
+          // query by color
         } else if (request.query.color) {
+          values = [ request.query.color ];
+
           myQuery = `
             SELECT *
             FROM dresses
-            WHERE color = '${ request.query.color }'
+            WHERE color = $1
           ;`;
 
         // query by length
         } else if (request.query.length) {
+          values = [ request.query.length ];
+
           myQuery = `
             SELECT *
             FROM dresses
-            WHERE length = '${ request.query.length }'
+            WHERE length = $1
           ;`;
+
         // query by no filter
         } else {
           myQuery = `
@@ -66,7 +74,7 @@ router.get( '/',
           }
           method: 'GET',
           params: {},
-          query: { color: 'white', length: 'short' },
+          query: { color: 'pink', length: 'short' },
           body: {},
           cookies: [Object: null prototype] {},
           ...
@@ -74,8 +82,11 @@ router.get( '/',
         */
 
         console.log( 'my request.query', request.query );
-        const result = await pool.query( myQuery );
-        response.send( result.rows );
+
+        // parameterized query
+        // pool.query() returns an object, one key value pair is "rows" with value that is an array of objects
+        const res = await pool.query( myQuery, values );
+        response.send( res.rows );
 
       } catch ( error ) {
           console.log( 'my error ', error );
@@ -117,7 +128,7 @@ router.get( '/',
       {
         id: 5,
         color: 'red',
-        length: 'mid'
+        length: 'short'
       },
 
       {
