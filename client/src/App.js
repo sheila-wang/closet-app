@@ -3,10 +3,22 @@ import React, { useState, useEffect } from 'react';
 
 function App() {
   const [items, setItems] = useState( [] );
+  const [color, setColor] = useState( '' );
+  const [length, setLength] = useState( '' );
 
   useEffect( () => {
+    let URL = 'http://localhost:3000';
+
+    if (color.length && length.length) {
+      URL += '?color=' + color + '&length=' + length;
+    } else if (color.length) {
+      URL += '?color=' + color;
+    } else if (length.length) {
+      URL += '?length=' + length;
+    }
+
     // fetch( 'http://localhost:3000/?color=pink&length=short') 
-    fetch( 'http://localhost:3000' ) 
+    fetch( URL ) 
     .then( response => response.json() )
     .then( 
       ( response ) => { 
@@ -15,14 +27,14 @@ function App() {
       },
       ( error ) => { console.log( error ) }
     )
-  }, [] ) 
+  }, [ color, length ] /* dependency array. if [], then only re-render on page load, if no [], then refire useEffect hooks with any change to state of component or of parent */ ) 
 
   const arrayOfObjects = [];
 
   for (let i = 0; i < items.length; i++) {
     arrayOfObjects.push(
       <Card
-        key = { i }
+        key = { items[i].id }
         item = { items[i] }
       />
     )
@@ -36,7 +48,10 @@ function App() {
 
         {/* color */}
         <div>color</div>
-        <select style = { { width: '100px' } }>
+        <select style = { { width: '100px' } } 
+          onChange = { (event) => setColor(event.target.value) }
+        >
+          <option value="" selected>{ color.length ? "unselect" : "select" }</option>
           <option value="white">white</option>
           <option value="beige">beige</option>
           <option value="brown">brown</option>
@@ -48,7 +63,10 @@ function App() {
 
         {/* length */}
         <div>length</div>
-        <select style = { { width: '100px' } }>
+        <select style = { { width: '100px' } }
+          onChange = { (event) => setLength(event.target.value) }
+        >
+          <option value="" selected>{ length.length ? "unselect" : "select" }</option>
           <option value="short">short</option>
           <option value="long">long</option>
         </select>
