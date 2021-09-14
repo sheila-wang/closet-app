@@ -44,14 +44,12 @@ function App() {
     <div id = "container1">
 
       <div id = "container2">
-        <div id = "search">search</div>
 
         {/* color */}
-        <div>color</div>
         <select style = { { width: '100px' } } 
           onChange = { (event) => setColor(event.target.value) }
         >
-          <option value="" selected>{ color.length ? "unselect" : "select" }</option>
+          <option value="" selected>{ color.length ? "color" : "color" }</option>
           <option value="white">white</option>
           <option value="beige">beige</option>
           <option value="brown">brown</option>
@@ -62,11 +60,10 @@ function App() {
         </select>
 
         {/* length */}
-        <div>length</div>
         <select style = { { width: '100px' } }
           onChange = { (event) => setLength(event.target.value) }
         >
-          <option value="" selected>{ length.length ? "unselect" : "select" }</option>
+          <option value="" selected>{ length.length ? "length" : "length" }</option>
           <option value="short">short</option>
           <option value="long">long</option>
         </select>
