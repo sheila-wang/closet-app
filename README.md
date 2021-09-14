@@ -1,3 +1,3 @@
-![File System Tree](./server/public/images/fileSystemTree.png)
+![File System Tree](./server/public/images/fileSystemTree.jpg)
 
-![Application Structure](./server/public/images/tux.png)
+![Application Structure](./server/public/images/tux.jpg)
