@@ -7,5 +7,5 @@ A web app to view an entire closet of clothes, filter by multiple attributes, an
 # File System Tree
 ![File System Tree](./server/public/images/fileSystemTree.jpg)
 
-# Application Structure
-![Application Structure](./server/public/images/applicationStructure.jpg)
+# Architecture
+![Architecture](./server/public/images/architecture.jpg)
