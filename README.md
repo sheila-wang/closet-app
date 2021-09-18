@@ -5,7 +5,7 @@ A web app to view an entire closet of clothes, filter by multiple attributes, an
 
 ![cantDecideWhatToWear.jpg](./server/public/images/cantDecideWhatToWear.jpg)
 
-![homerSimpson.jpg](./server/public/images/homerSimpson.jpg)
+![homerSimpson.gif](./server/public/images/homerSimpson.gif)
 
 # Web App Snapshot
 ![webAppSnapshot.jpg](./server/public/images/webAppSnapshot.jpg)
