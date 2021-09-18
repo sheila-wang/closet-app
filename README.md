@@ -1,7 +1,7 @@
 # Closet App
 A web app to view an entire closet of clothes, filter by multiple attributes, and decide what to wear in minutes. 
 ![nothingToWear.jpg](./server/public/images/nothingToWear.jpg)
-![baby.jpg](./server/public/images/baby.jpg)
+![cantDecideWhatToWear.jpg](./server/public/images/cantDecideWhatToWear.jpg)
 
 # Web App Snapshot
 ![webAppSnapshot.jpg](./server/public/images/webAppSnapshot.jpg)
